@@ -1,6 +1,6 @@
 {
   "name": "@playcanvas/eslint-config",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "author": "PlayCanvas <support@playcanvas.com>",
   "homepage": "https://playcanvas.com",
   "description": "ESLint configuration used by PlayCanvas",
