@@ -426,7 +426,7 @@ export default [
       "jsdoc/check-param-names": "off",
       "jsdoc/check-property-names": "error",
       "jsdoc/check-syntax": "error",
-      "jsdoc/check-tag-names": ["error", { "definedTags": [...esmScriptTags, "category", "import"] }],
+      "jsdoc/check-tag-names": ["error", { "definedTags": [...esmScriptTags, "alpha", "beta", "category", "import"] }],
       "jsdoc/check-types": "off",
       "jsdoc/check-values": "error",
       "jsdoc/empty-tags": "error",
