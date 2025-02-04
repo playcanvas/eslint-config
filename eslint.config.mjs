@@ -13,7 +13,9 @@ const esmScriptTags = [
   'precision',
   'size',
   'step',
-  'title'
+  'title',
+  'visibleif',
+  'enabledif'
 ]
 
 export default [
