@@ -1,25 +1,44 @@
 # PlayCanvas ESLint Config
 
-ESLint configuration developed by the PlayCanvas team and leveraged by many PlayCanvas-related projects, including the [PlayCanvas Engine][engine]. However, you can use it for any JavaScript-based project if you approve of the PlayCanvas coding style.
+ESLint configuration developed by the PlayCanvas team and leveraged by many PlayCanvas-related projects, including the [PlayCanvas Engine](https://github.com/playcanvas/engine). However, you can use it for any JavaScript-based project if you approve of the PlayCanvas coding style.
 
-The configuration is defined in [`index.js`][index]. It configures ESLint's rules in the same order as they are enumerated [here][rules]. It also configures rules for checking JSDoc comments using the ESLint plugin [`eslint-plugin-jsdoc-rules`][jsdoc-plugin].
+The configuration is defined in [`eslint.config.mjs`](https://github.com/playcanvas/eslint-config/blob/main/eslint.config.mjs). It configures ESLint's rules in a comprehensive manner, covering Possible Problems, Suggestions, and Formatting categories. It also includes additional plugins:
 
-The configuration attempts to enable as many rules as possible, particularly those categorized as 'recommended' by ESLint.
+- `eslint-plugin-jsdoc`: For JSDoc validation and enforcement
+- `eslint-plugin-import`: For import/export validation and ordering
+- `eslint-plugin-regexp`: For regular expression best practices
+
+The configuration attempts to enable as many rules as possible, particularly those categorized as 'recommended' by ESLint, while maintaining practicality for real-world development.
 
 ## Using this config in your own projects
 
-Edit your project's `package.json` file:
+1. Install the package:
 
-1. Add `eslint` and `@playcanvas/eslint-config` to your `devDependencies` section.
-2. Add an `eslintConfig` section. At a minimum, you will need:
-
-```json
-    "eslintConfig": {
-        "extends": "@playcanvas/eslint-config"
-    },
+```bash
+npm install --save-dev @playcanvas/eslint-config eslint
 ```
 
-[engine]: https://github.com/playcanvas/engine
-[index]: https://github.com/playcanvas/playcanvas-eslint-config/blob/master/index.js
-[rules]: https://eslint.org/docs/rules/
-[jsdoc-plugin]: https://github.com/gajus/eslint-plugin-jsdoc
+2. Create an `eslint.config.js` file in your project root:
+
+```js
+import playcanvasConfig from '@playcanvas/eslint-config';
+
+export default [
+    ...playcanvasConfig,
+    // Your custom configurations here
+];
+```
+
+## Features
+
+- Full flat config format support for ESLint 8+
+- Comprehensive rule configuration
+- Support for ESM Script JSDoc tags used in PlayCanvas
+- Import ordering and validation
+- Strict JSDoc validation
+- Regular expression pattern enforcement
+
+## Requirements
+
+- ESLint 8 or later
+- Node.js 16 or later
