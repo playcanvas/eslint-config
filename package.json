@@ -10,7 +10,8 @@
     "playcanvas"
   ],
   "license": "MIT",
-  "main": "eslint.config.mjs",
+  "main": "dist/config.js",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/playcanvas/playcanvas-eslint-config/issues"
   },
@@ -26,13 +27,29 @@
   ],
   "dependencies": {
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsdoc": "^61.1.4",
     "eslint-plugin-regexp": "^2.10.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "prettier --check . && eslint .",
+    "lint:fix": "prettier --write . && eslint --fix ."
   },
   "peerDependencies": {
-    "eslint": ">= 8"
+    "eslint": ">= 9"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^61.1.5",
+    "eslint-plugin-package-json": "^0.57.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.4.0",
+    "jsonc-eslint-parser": "^2.4.1",
+    "typescript": "^5.9.3"
   }
 }
