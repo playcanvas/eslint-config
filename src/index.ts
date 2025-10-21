@@ -1,7 +1,12 @@
-import javascript from './configs/javascript.js';
+import base from './configs/base.js';
+import json from './configs/json.js';
+import legacy from './configs/legacy.js';
 import typescript from './configs/typescript.js';
 
 export default {
-    javascript,
+    legacy,
     typescript,
+    json,
+    base,
+    recommended: [...base, ...json, ...typescript],
 };
