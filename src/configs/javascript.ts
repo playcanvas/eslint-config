@@ -18,7 +18,7 @@ const esmScriptTags = [
     'enabledif',
 ];
 
-export const config = [
+export default [
     {
         plugins: {
             import: importPlugin,
