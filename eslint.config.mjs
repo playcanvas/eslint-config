@@ -10,7 +10,7 @@ import jsoncEslintParser from 'jsonc-eslint-parser';
 import tseslint from 'typescript-eslint';
 
 const ignoreConfig = {
-    ignores: ['**/node_modules', '**/out', '.vscode-test*/**'],
+    ignores: ['**/node_modules', '**/dist'],
 };
 
 const baseConfig = {
