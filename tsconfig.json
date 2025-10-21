@@ -58,7 +58,7 @@
 
         // --- Module and Import Resolution ---
         /** Specify the module code generation method. (Original: Node16) */
-        // "module": "Node16",
+        "module": "Node16",
         /** Specify how modules are resolved. (Should align with 'module' option) */
         // "moduleResolution": "Node16",
         /** Enable importing `.json` files. (Original: true) */
