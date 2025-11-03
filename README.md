@@ -34,6 +34,9 @@ export default [
 
 ## Features
 
+> [!WARNING]
+> The typescript and react rules are incomplete and are still being developed based on current practises and existing legacy rules
+
 - Full flat config format support for ESLint 9+
 - Comprehensive rule configuration
 - Support for ESM Script JSDoc tags used in PlayCanvas
