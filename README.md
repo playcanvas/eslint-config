@@ -27,7 +27,7 @@ import playcanvasConfig from '@playcanvas/eslint-config';
 export default [
     ...playcanvasConfig.typescript,
     ...playcanvasConfig.react,
-    ...playcanvasConfig.legacy
+    ...playcanvasConfig.legacy,
     // Your custom configurations here
 ];
 ```
