@@ -6,4 +6,11 @@ export default [
     pluginJsxA11y.flatConfigs.recommended,
     pluginReact.configs.flat.recommended,
     pluginReactHooks.configs.flat.recommended,
+    {
+        settings: {
+            react: {
+                version: 'detect',
+            },
+        },
+    },
 ];
