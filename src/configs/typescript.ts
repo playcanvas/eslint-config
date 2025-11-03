@@ -1,7 +1,6 @@
 import eslint from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import { defineConfig } from 'eslint/config';
 import pluginImport from 'eslint-plugin-import';
 import * as pluginPackageJson from 'eslint-plugin-package-json';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -15,7 +14,7 @@ const ignoreConfig = {
 
 const baseConfig = {
     rules: {
-        curly: 'error',
+        curly: ['error'],
         'import/order': [
             'error',
             {
@@ -70,15 +69,15 @@ const packageJsonConfig = {
     rules: pluginPackageJson.configs.recommended.rules,
 };
 
-export default defineConfig(
+export default [
     eslint.configs.recommended,
-    tseslint.configs.recommended,
-    tseslint.configs.strict,
-    tseslint.configs.stylistic,
+    ...tseslint.configs.recommended,
+    ...tseslint.configs.strict,
+    ...tseslint.configs.stylistic,
     pluginPrettierRecommended,
     pluginImport.flatConfigs.recommended,
     ignoreConfig,
     baseConfig,
     tsFilesConfig,
     packageJsonConfig,
-);
+];
