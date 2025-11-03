@@ -38,7 +38,7 @@
         /** Report errors when a property is declared but not used. */
         // "useUnknownInCatchVariables": false,
         /** Skip type checking of declaration files. */
-        // "skipLibCheck": true,
+        "skipLibCheck": true,
         /** Disable reporting of `ts(2370)` error for legacy decorators. */
         // "suppressImplicitAnyIndexErrors": false,
         /** Report an error when `super()` is not called in a constructor of a derived class. */
