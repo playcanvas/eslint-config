@@ -1,9 +1,10 @@
 #!/bin/bash -e
 
 TYPE=$1
+PRE_ID_PREVIEW="beta"
 
-if [[ ! " major minor patch " =~ " $TYPE " ]]; then
-    echo "Usage: $0 (major|minor|patch)"
+if [[ ! " major minor patch prerelease " =~ " $TYPE " ]]; then
+    echo "Usage: $0 (major|minor|patch|prerelease)"
     exit 1
 fi
 
@@ -23,4 +24,4 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # Tag release
-npm version $TYPE
+npm version $TYPE --preid=$PRE_ID_PREVIEW 
