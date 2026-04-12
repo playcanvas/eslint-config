@@ -51,7 +51,7 @@ jobs:
           npm publish --tag $tag --provenance
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         if: ${{ !contains(github.ref, 'beta') }}
         with:
           generate_release_notes: true
