@@ -19,16 +19,46 @@ ESLint configuration developed by the PlayCanvas team and leveraged by many Play
 npm install -D @playcanvas/eslint-config eslint
 ```
 
-2. Create an `eslint.config.js` file in your project root:
+2. Create an `eslint.config.js` file in your project root. Import the config for your project type from its subpath — this loads only that config's plugins:
+
+```js
+// TypeScript projects (modern, strict rules)
+import typescriptConfig from '@playcanvas/eslint-config/typescript';
+
+export default [
+    ...typescriptConfig
+    // Your custom configurations here
+];
+```
+
+The available entry points are:
+
+- `@playcanvas/eslint-config/typescript` — modern, strict rules for TypeScript (ESM) projects
+- `@playcanvas/eslint-config/javascript` (alias: `/legacy`) — rules for JavaScript + JSDoc (ESM) projects, such as the PlayCanvas engine
+- `@playcanvas/eslint-config/react` — React rules, layered on top of one of the above
+
+For example, a React + TypeScript project:
+
+```js
+import reactConfig from '@playcanvas/eslint-config/react';
+import typescriptConfig from '@playcanvas/eslint-config/typescript';
+
+export default [
+    ...typescriptConfig,
+    ...reactConfig
+    // Your custom configurations here
+];
+```
+
+Alternatively, the default export exposes every config as an object:
 
 ```js
 import playcanvasConfig from '@playcanvas/eslint-config';
 
 export default [
     ...playcanvasConfig.typescript
-    // ...playcanvasConfig.react, // Uncomment if using react
-    // ...playcanvasConfig.legacy, // Uncomment if using legacy javascript rules
-    // Your custom configurations here
+    // ...playcanvasConfig.legacy, // JavaScript + JSDoc rules
+    // ...playcanvasConfig.react // React rules
 ];
 ```
 
