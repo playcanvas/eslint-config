@@ -9,11 +9,11 @@
     ],
     "homepage": "https://playcanvas.com",
     "bugs": {
-        "url": "https://github.com/playcanvas/playcanvas-eslint-config/issues"
+        "url": "https://github.com/playcanvas/eslint-config/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/playcanvas/playcanvas-eslint-config.git"
+        "url": "git+https://github.com/playcanvas/eslint-config.git"
     },
     "license": "MIT",
     "author": "PlayCanvas <support@playcanvas.com>",
