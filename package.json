@@ -18,26 +18,27 @@
     "license": "MIT",
     "author": "PlayCanvas <support@playcanvas.com>",
     "type": "module",
-    "main": "dist/index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./javascript": "./dist/configs/legacy.js",
+        "./legacy": "./dist/configs/legacy.js",
+        "./react": "./dist/configs/react.js",
+        "./typescript": "./dist/configs/typescript.js"
+    },
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "tsc",
-        "lint": "prettier --check . && eslint .",
-        "lint:fix": "prettier --write . && eslint --fix .",
+        "build": "npm run clean && tsc",
+        "clean": "node ./scripts/clean.mjs",
+        "lint": "npm run build && prettier --check . && eslint .",
+        "lint:fix": "npm run build && prettier --write . && eslint --fix .",
         "publint": "publint",
+        "test": "node ./scripts/test.mjs",
         "watch": "tsc -w"
     },
     "dependencies": {
-        "eslint-plugin-import": "^2.32.0",
-        "eslint-plugin-regexp": "^2.10.0"
-    },
-    "devDependencies": {
-        "@types/eslint-plugin-jsx-a11y": "^6.10.1",
-        "@typescript-eslint/eslint-plugin": "^8.46.2",
-        "@typescript-eslint/parser": "^8.46.2",
-        "eslint": "^9.39.0",
+        "@eslint/js": "^9.39.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-import-resolver-typescript": "^4.4.4",
         "eslint-plugin-import": "^2.32.0",
@@ -47,11 +48,16 @@
         "eslint-plugin-prettier": "^5.5.4",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-regexp": "^2.10.0",
         "globals": "^16.5.0",
         "jsonc-eslint-parser": "^2.4.1",
-        "publint": "^0.3.15",
-        "typescript": "^5.9.3",
         "typescript-eslint": "^8.46.2"
+    },
+    "devDependencies": {
+        "@types/eslint-plugin-jsx-a11y": "^6.10.1",
+        "eslint": "^9.39.0",
+        "publint": "^0.3.15",
+        "typescript": "^5.9.3"
     },
     "peerDependencies": {
         "eslint": ">= 9",

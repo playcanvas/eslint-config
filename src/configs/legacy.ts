@@ -3,7 +3,7 @@ import jsdocPlugin from 'eslint-plugin-jsdoc';
 import regexpPlugin from 'eslint-plugin-regexp';
 
 // ESM Script supported JSDoc tags
-const esmScriptTags = [
+export const esmScriptTags = [
     'attribute',
     'resource',
     'color',
@@ -15,7 +15,7 @@ const esmScriptTags = [
     'step',
     'title',
     'visibleif',
-    'enabledif',
+    'enabledif'
 ];
 
 export default [
@@ -23,7 +23,7 @@ export default [
         plugins: {
             import: importPlugin,
             jsdoc: jsdocPlugin,
-            regexp: regexpPlugin,
+            regexp: regexpPlugin
         },
         rules: {
             // Possible Problems
@@ -41,8 +41,8 @@ export default [
             'no-constant-condition': [
                 'error',
                 {
-                    checkLoops: false,
-                },
+                    checkLoops: false
+                }
             ],
             'no-constructor-return': 'error',
             'no-debugger': 'error',
@@ -84,14 +84,14 @@ export default [
                 'error',
                 {
                     args: 'none',
-                    caughtErrors: 'none',
-                },
+                    caughtErrors: 'none'
+                }
             ],
             'no-use-before-define': [
                 'error',
                 {
-                    functions: false,
-                },
+                    functions: false
+                }
             ],
             'require-atomic-updates': 'error',
             'use-isnan': 'error',
@@ -146,8 +146,8 @@ export default [
             'no-empty': [
                 'error',
                 {
-                    allowEmptyCatch: true,
-                },
+                    allowEmptyCatch: true
+                }
             ],
             'no-empty-function': 'off',
             'no-empty-static-block': 'error',
@@ -246,8 +246,8 @@ export default [
                 'error',
                 'always',
                 {
-                    exceptions: ['/'],
-                },
+                    exceptions: ['/']
+                }
             ],
             strict: 'error',
             'symbol-description': 'error',
@@ -262,8 +262,8 @@ export default [
                 'error',
                 'as-needed',
                 {
-                    requireForBlockBody: true,
-                },
+                    requireForBlockBody: true
+                }
             ],
             'arrow-spacing': 'error',
             'block-spacing': 'error',
@@ -273,8 +273,8 @@ export default [
                 'error',
                 {
                     before: false,
-                    after: true,
-                },
+                    after: true
+                }
             ],
             'comma-style': ['error', 'last'],
             'computed-property-spacing': ['error', 'never'],
@@ -290,23 +290,23 @@ export default [
                 4,
                 {
                     MemberExpression: 0,
-                    SwitchCase: 1,
-                },
+                    SwitchCase: 1
+                }
             ],
             'jsx-quotes': 'off',
             'key-spacing': [
                 'error',
                 {
                     beforeColon: false,
-                    afterColon: true,
-                },
+                    afterColon: true
+                }
             ],
             'keyword-spacing': [
                 'error',
                 {
                     before: true,
-                    after: true,
-                },
+                    after: true
+                }
             ],
             'line-comment-position': 'off',
             'linebreak-style': 'off',
@@ -330,17 +330,17 @@ export default [
                         IfStatement: true,
                         LogicalExpression: true,
                         SwitchCase: true,
-                        VariableDeclarator: true,
-                    },
-                },
+                        VariableDeclarator: true
+                    }
+                }
             ],
             'no-multiple-empty-lines': [
                 'error',
                 {
                     max: 2,
                     maxBOF: 0,
-                    maxEOF: 0,
-                },
+                    maxEOF: 0
+                }
             ],
             'no-tabs': 'error',
             'no-trailing-spaces': 'error',
@@ -349,22 +349,22 @@ export default [
             'object-curly-newline': [
                 'error',
                 {
-                    consistent: true,
-                },
+                    consistent: true
+                }
             ],
             'object-curly-spacing': ['error', 'always'],
             'object-property-newline': [
                 'error',
                 {
-                    allowAllPropertiesOnSameLine: true,
-                },
+                    allowAllPropertiesOnSameLine: true
+                }
             ],
             'operator-linebreak': ['error', 'after'],
             'padded-blocks': [
                 'error',
                 {
-                    classes: 'never',
-                },
+                    classes: 'never'
+                }
             ],
             'padding-line-between-statements': 'off',
             quotes: ['error', 'single'],
@@ -374,8 +374,8 @@ export default [
                 'error',
                 {
                     before: false,
-                    after: true,
-                },
+                    after: true
+                }
             ],
             'semi-style': ['error', 'last'],
             'space-before-blocks': 'error',
@@ -383,30 +383,30 @@ export default [
                 'error',
                 {
                     anonymous: 'always',
-                    named: 'never',
-                },
+                    named: 'never'
+                }
             ],
             'space-in-parens': ['error', 'never'],
             'space-infix-ops': [
                 'error',
                 {
-                    int32Hint: false,
-                },
+                    int32Hint: false
+                }
             ],
             'space-unary-ops': [
                 'error',
                 {
                     words: true,
                     nonwords: false,
-                    overrides: {},
-                },
+                    overrides: {}
+                }
             ],
             'switch-colon-spacing': [
                 'error',
                 {
                     after: true,
-                    before: false,
-                },
+                    before: false
+                }
             ],
             'template-curly-spacing': 'error',
             'template-tag-spacing': 'error',
@@ -427,8 +427,8 @@ export default [
                 {
                     groups: ['builtin', 'external', 'internal', ['parent', 'sibling'], 'index', 'unknown'],
                     'newlines-between': 'always',
-                    alphabetize: { order: 'asc', caseInsensitive: true },
-                },
+                    alphabetize: { order: 'asc', caseInsensitive: true }
+                }
             ],
 
             // Helpful warnings
@@ -451,7 +451,7 @@ export default [
             'jsdoc/check-syntax': 'error',
             'jsdoc/check-tag-names': [
                 'error',
-                { definedTags: [...esmScriptTags, 'alpha', 'beta', 'category', 'import'] },
+                { definedTags: [...esmScriptTags, 'alpha', 'beta', 'category', 'import'] }
             ],
             'jsdoc/check-types': 'off',
             'jsdoc/check-values': 'error',
@@ -475,8 +475,8 @@ export default [
             'jsdoc/require-description-complete-sentence': [
                 'off',
                 {
-                    abbreviations: ['e.g.'],
-                },
+                    abbreviations: ['e.g.']
+                }
             ],
             'jsdoc/require-example': 'off',
             'jsdoc/require-file-overview': 'off',
@@ -569,7 +569,7 @@ export default [
             'regexp/simplify-set-operations': 'error',
             'regexp/sort-flags': 'error',
             'regexp/strict': 'error',
-            'regexp/use-ignore-case': 'error',
-        },
-    },
+            'regexp/use-ignore-case': 'error'
+        }
+    }
 ];

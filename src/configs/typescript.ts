@@ -1,6 +1,4 @@
 import eslint from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
 import pluginImport from 'eslint-plugin-import';
 import * as pluginPackageJson from 'eslint-plugin-package-json';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -9,64 +7,65 @@ import jsoncEslintParser from 'jsonc-eslint-parser';
 import tseslint from 'typescript-eslint';
 
 const ignoreConfig = {
-    ignores: ['**/node_modules', '**/dist'],
+    ignores: ['**/node_modules', '**/dist']
 };
 
 const baseConfig = {
     rules: {
-        curly: ['error'],
+        curly: 'error',
         'import/order': [
             'error',
             {
                 alphabetize: { order: 'asc', caseInsensitive: true },
                 'newlines-between': 'always',
-                groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
-            },
+                groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object']
+            }
         ],
+        '@typescript-eslint/no-invalid-void-type': 'off',
         '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/no-unused-vars': [
             'error',
             {
                 argsIgnorePattern: '^_',
                 varsIgnorePattern: '^_',
-                caughtErrorsIgnorePattern: '^_',
-            },
-        ],
+                caughtErrorsIgnorePattern: '^_'
+            }
+        ]
     },
     settings: {
         'import/resolver': {
-            typescript: true,
-        },
-    },
+            typescript: true
+        }
+    }
 };
 
 const tsFilesConfig = {
     files: ['**/*.{js,mjs,ts}'],
     plugins: {
-        '@typescript-eslint': typescriptEslint,
+        '@typescript-eslint': tseslint.plugin
     },
     languageOptions: {
-        parser: tsParser,
+        parser: tseslint.parser,
         ecmaVersion: 2022,
         sourceType: 'module',
-        globals: globals.node,
+        globals: globals.node
     },
     rules: {
         '@typescript-eslint/consistent-type-imports': 'error',
         '@typescript-eslint/no-dynamic-delete': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off',
-    },
+        '@typescript-eslint/no-non-null-assertion': 'off'
+    }
 };
 
 const packageJsonConfig = {
     files: ['**/package.json', '**/package-lock.json'],
     languageOptions: {
-        parser: jsoncEslintParser,
+        parser: jsoncEslintParser
     },
     plugins: {
-        'package-json': pluginPackageJson,
+        'package-json': pluginPackageJson
     },
-    rules: pluginPackageJson.configs.recommended.rules,
+    rules: pluginPackageJson.configs.recommended.rules
 };
 
 export default [
@@ -79,5 +78,5 @@ export default [
     ignoreConfig,
     baseConfig,
     tsFilesConfig,
-    packageJsonConfig,
+    packageJsonConfig
 ];
