@@ -3,8 +3,8 @@
 TYPE=$1
 PRE_ID_PREVIEW="beta"
 
-if [[ ! " major minor patch premajor " =~ " $TYPE " ]]; then
-    echo "Usage: $0 (major|minor|patch|premajor)"
+if [[ ! " major minor patch premajor prerelease " =~ " $TYPE " ]]; then
+    echo "Usage: $0 (major|minor|patch|premajor|prerelease)"
     exit 1
 fi
 
