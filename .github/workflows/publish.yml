@@ -52,9 +52,8 @@ jobs:
 
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v3
-              if: ${{ !contains(github.ref, 'beta') }}
               with:
                   generate_release_notes: true
-                  prerelease: false
+                  prerelease: ${{ contains(github.ref, 'beta') }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
