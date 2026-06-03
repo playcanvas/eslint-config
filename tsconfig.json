@@ -175,7 +175,7 @@
         // "verbatimModuleSyntax": false
     },
     /** Specify an array of filenames or patterns that should be excluded from the program. (Original: out, plugin) */
-    "exclude": ["dist"]
+    "exclude": ["dist", "types"]
 
     // --- Project References and Includes ---
     /** Specify an array of filenames or patterns that should be included in the program. */

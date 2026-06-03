@@ -78,6 +78,7 @@ export default [
     baseConfig,
     tsFilesConfig,
     packageJsonConfig,
+
     // last: turn off ESLint formatting rules that would conflict with Prettier
     // (run Prettier itself separately — see the prettier export / README)
     eslintConfigPrettier

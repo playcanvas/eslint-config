@@ -22,12 +22,16 @@
         ".": "./dist/index.js",
         "./javascript": "./dist/configs/legacy.js",
         "./legacy": "./dist/configs/legacy.js",
-        "./prettier": "./dist/configs/prettier.js",
+        "./prettier": {
+            "types": "./types/prettier.d.ts",
+            "default": "./dist/configs/prettier.js"
+        },
         "./react": "./dist/configs/react.js",
         "./typescript": "./dist/configs/typescript.js"
     },
     "files": [
-        "dist"
+        "dist",
+        "types"
     ],
     "scripts": {
         "build": "npm run clean && tsc",
