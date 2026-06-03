@@ -22,6 +22,7 @@
         ".": "./dist/index.js",
         "./javascript": "./dist/configs/legacy.js",
         "./legacy": "./dist/configs/legacy.js",
+        "./prettier": "./dist/configs/prettier.js",
         "./react": "./dist/configs/react.js",
         "./typescript": "./dist/configs/typescript.js"
     },
@@ -45,7 +46,6 @@
         "eslint-plugin-jsdoc": "^61.1.11",
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-package-json": "^0.59.1",
-        "eslint-plugin-prettier": "^5.5.4",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^7.0.1",
         "eslint-plugin-regexp": "^2.10.0",
@@ -56,6 +56,7 @@
     "devDependencies": {
         "@types/eslint-plugin-jsx-a11y": "^6.10.1",
         "eslint": "^9.39.0",
+        "prettier": "^3.6.2",
         "publint": "^0.3.15",
         "typescript": "^5.9.3"
     },
