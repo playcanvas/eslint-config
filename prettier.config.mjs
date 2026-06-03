@@ -1,11 +1,2 @@
-/** @import { Config } from 'prettier' */
-
-/**
- * @type {Config}
- */
-export default {
-    tabWidth: 4,
-    singleQuote: true,
-    printWidth: 120,
-    trailingComma: 'none'
-};
+// re-export the shared PlayCanvas Prettier config (single source of the house style)
+export { default } from './dist/configs/prettier.js';

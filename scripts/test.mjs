@@ -26,7 +26,7 @@ writeFileSync(
 // install ONLY the peers + the packed tarball — never the config's devDependencies
 run(`npm install --no-audit --no-fund --no-save eslint@9 typescript@5 "${join(dir, tarball)}"`, dir);
 
-const entries = ['', '/typescript', '/legacy', '/javascript', '/react'];
+const entries = ['', '/typescript', '/legacy', '/javascript', '/react', '/prettier'];
 for (const entry of entries) {
     const spec = `@playcanvas/eslint-config${entry}`;
     run(`node --input-type=module -e "await import('${spec}'); console.log('  loaded ${spec}')"`, dir);

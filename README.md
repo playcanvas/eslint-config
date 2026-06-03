@@ -62,6 +62,22 @@ export default [
 ];
 ```
 
+3. Prettier is run as a separate step, not through ESLint — the config above only disables the ESLint formatting rules that would conflict with Prettier. To apply the PlayCanvas house style, create a `prettier.config.mjs` that re-exports the shared config:
+
+```js
+export { default } from '@playcanvas/eslint-config/prettier';
+```
+
+Then run both, for example:
+
+```json
+{
+    "scripts": {
+        "lint": "prettier --check . && eslint ."
+    }
+}
+```
+
 ## Features
 
 > [!WARNING]
