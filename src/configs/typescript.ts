@@ -13,6 +13,16 @@ const ignoreConfig = {
 const baseConfig = {
     rules: {
         curly: 'error',
+        // pin the PlayCanvas house style so consumers get it without their own prettier config
+        'prettier/prettier': [
+            'error',
+            {
+                tabWidth: 4,
+                singleQuote: true,
+                printWidth: 120,
+                trailingComma: 'none'
+            }
+        ],
         'import/order': [
             'error',
             {
