@@ -1,4 +1,5 @@
-import importPlugin from 'eslint-plugin-import';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
+import importPlugin from 'eslint-plugin-import-x';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import regexpPlugin from 'eslint-plugin-regexp';
 
@@ -24,6 +25,13 @@ export default [
             import: importPlugin,
             jsdoc: jsdocPlugin,
             regexp: regexpPlugin
+        },
+        settings: {
+            // node resolver stays primary so resolution is unchanged for existing JS consumers; the
+            // exports-aware resolver only catches subpaths node misses, e.g. the package's own
+            // `@playcanvas/eslint-config/legacy` import. resolvers are passed as objects, so loading
+            // never depends on how they're hoisted in a consumer's node_modules
+            'import-x/resolver-next': [importPlugin.createNodeResolver(), createTypeScriptImportResolver()]
         },
         rules: {
             // Possible Problems
