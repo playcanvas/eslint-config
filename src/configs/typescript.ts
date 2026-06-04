@@ -51,7 +51,7 @@ const baseConfig = {
 };
 
 const tsFilesConfig = {
-    files: ['**/*.{js,mjs,ts}'],
+    files: ['**/*.{js,mjs,cjs,ts,tsx,mts,cts}'],
     plugins: {
         '@typescript-eslint': tseslint.plugin
     },
