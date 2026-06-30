@@ -79,6 +79,12 @@ const packageJsonConfig = {
     rules: pluginPackageJson.configs.recommended.rules
 };
 
+const spacingConfig = {
+    rules: {
+        'object-curly-spacing': ['error', 'always']
+    }
+};
+
 export default [
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
@@ -90,7 +96,8 @@ export default [
     tsFilesConfig,
     packageJsonConfig,
 
-    // last: turn off ESLint formatting rules that would conflict with Prettier
+    // turn off ESLint formatting rules that would conflict with Prettier
     // (run Prettier itself separately — see the prettier export / README)
-    eslintConfigPrettier
+    eslintConfigPrettier,
+    spacingConfig
 ];
