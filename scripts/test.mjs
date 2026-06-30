@@ -3,7 +3,7 @@
 // ONLY the declared peers, then import every entry point. fails if any runtime
 // plugin is missing from `dependencies` — the failure publint cannot detect,
 // and the reason v3.0.0-beta.0 was unusable.
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -32,5 +32,25 @@ for (const entry of entries) {
     run(`node --input-type=module -e "await import('${spec}'); console.log('  loaded ${spec}')"`, dir);
 }
 
+writeFileSync(
+    join(dir, 'eslint.config.mjs'),
+    "import typescript from '@playcanvas/eslint-config/typescript';\nexport default typescript;\n"
+);
+writeFileSync(
+    join(dir, 'bad.ts'),
+    'const data = {} as AnyRecord;\nconst cast = data as unknown as Record<string, string>;\nvoid cast;\n'
+);
+
+const lint = spawnSync('npx', ['eslint', 'bad.ts'], { cwd: dir, encoding: 'utf8' });
+const output = `${lint.stdout}\n${lint.stderr}`;
+if (
+    lint.status === 0 ||
+    !output.includes('Use a narrower type instead of AnyRecord') ||
+    !output.includes('Do not cast through unknown to bypass type checking')
+) {
+    console.error(output);
+    process.exit(1);
+}
+
 rmSync(dir, { recursive: true, force: true });
-console.log('test: all entry points load with only declared dependencies');
+console.log('test: entry points load and TypeScript restrictions apply');

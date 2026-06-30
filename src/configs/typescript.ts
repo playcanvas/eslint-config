@@ -65,7 +65,18 @@ const tsFilesConfig = {
         '@typescript-eslint/consistent-type-imports': 'error',
         '@typescript-eslint/no-dynamic-delete': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/prefer-for-of': 'off'
+        '@typescript-eslint/prefer-for-of': 'off',
+        'no-restricted-syntax': [
+            'error',
+            {
+                selector: 'TSTypeReference[typeName.type="Identifier"][typeName.name="AnyRecord"]',
+                message: 'Use a narrower type instead of AnyRecord'
+            },
+            {
+                selector: 'TSAsExpression > TSAsExpression[typeAnnotation.type="TSUnknownKeyword"]',
+                message: 'Do not cast through unknown to bypass type checking'
+            }
+        ]
     }
 };
 
