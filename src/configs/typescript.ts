@@ -64,7 +64,8 @@ const tsFilesConfig = {
     rules: {
         '@typescript-eslint/consistent-type-imports': 'error',
         '@typescript-eslint/no-dynamic-delete': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off'
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/prefer-for-of': 'off'
     }
 };
 
