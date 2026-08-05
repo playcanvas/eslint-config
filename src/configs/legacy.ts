@@ -29,7 +29,7 @@ export default [
         settings: {
             // node resolver stays primary so resolution is unchanged for existing JS consumers; the
             // exports-aware resolver only catches subpaths node misses, e.g. the package's own
-            // `@playcanvas/eslint-config/legacy` import. resolvers are passed as objects, so loading
+            // `@playcanvas/eslint-config/javascript` import. resolvers are passed as objects, so loading
             // never depends on how they're hoisted in a consumer's node_modules
             'import-x/resolver-next': [importPlugin.createNodeResolver(), createTypeScriptImportResolver()]
         },

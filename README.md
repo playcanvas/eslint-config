@@ -34,7 +34,7 @@ export default [
 The available entry points are:
 
 - `@playcanvas/eslint-config/typescript` — modern, strict rules for TypeScript (ESM) projects
-- `@playcanvas/eslint-config/javascript` (alias: `/legacy`) — rules for JavaScript + JSDoc (ESM) projects, such as the PlayCanvas engine
+- `@playcanvas/eslint-config/javascript` — rules for JavaScript + JSDoc (ESM) projects, such as the PlayCanvas engine
 - `@playcanvas/eslint-config/react` — React rules, layered on top of one of the above
 
 For example, a React + TypeScript project:
@@ -57,7 +57,7 @@ import playcanvasConfig from '@playcanvas/eslint-config';
 
 export default [
     ...playcanvasConfig.typescript
-    // ...playcanvasConfig.legacy, // JavaScript + JSDoc rules
+    // ...playcanvasConfig.javascript, // JavaScript + JSDoc rules
     // ...playcanvasConfig.react // React rules
 ];
 ```
