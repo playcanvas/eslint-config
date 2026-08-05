@@ -21,7 +21,6 @@
     "exports": {
         ".": "./dist/index.js",
         "./javascript": "./dist/configs/legacy.js",
-        "./legacy": "./dist/configs/legacy.js",
         "./prettier": {
             "types": "./types/prettier.d.ts",
             "default": "./dist/configs/prettier.js"

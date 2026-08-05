@@ -1,4 +1,4 @@
-import legacy from './configs/legacy.js';
+import javascript from './configs/legacy.js';
 import react from './configs/react.js';
 import typescript from './configs/typescript.js';
 
@@ -7,7 +7,7 @@ import typescript from './configs/typescript.js';
 export { esmScriptTags } from './configs/legacy.js';
 
 export default {
-    legacy,
+    javascript,
     typescript,
     react
 };
