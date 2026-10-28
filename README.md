@@ -92,5 +92,5 @@ Then run both, for example:
 
 ## Requirements
 
-- ESLint 9 or later
-- Node.js 18 or later
+- ESLint 9 or 10
+- Node.js 20.19, 22.13, 24 or later
