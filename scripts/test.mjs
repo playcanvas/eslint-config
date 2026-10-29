@@ -3,6 +3,10 @@
 // ONLY the declared peers, then import every entry point. fails if any runtime
 // plugin is missing from `dependencies` — the failure publint cannot detect,
 // and the reason v3.0.0-beta.0 was unusable.
+//
+// it then lints a small file with each config, on every supported ESLint major:
+// a rule only runs its setup when it lints a file, and that is where a plugin
+// that calls an API the major removed throws, as eslint-plugin-react did on 10.
 import { execSync } from 'node:child_process';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -23,14 +27,62 @@ writeFileSync(
     JSON.stringify({ name: 'consumer', version: '1.0.0', type: 'module', private: true })
 );
 
-// install ONLY the peers + the packed tarball — never the config's devDependencies
-run(`npm install --no-audit --no-fund --no-save eslint@9 typescript@5 "${join(dir, tarball)}"`, dir);
+// a config file and a file it should lint cleanly, per entry point
+const lintCases = {
+    javascript: {
+        config: "import javascript from '@playcanvas/eslint-config/javascript';\n\nexport default javascript;\n",
+        file: 'fixture.js',
+        code: [
+            '/**',
+            ' * Adds one to a number.',
+            ' *',
+            ' * @param {number} value - The number to add one to.',
+            ' * @returns {number} The number plus one.',
+            ' */',
+            'export const addOne = value => value + 1;',
+            ''
+        ].join('\n')
+    },
+    typescript: {
+        config: "import typescript from '@playcanvas/eslint-config/typescript';\n\nexport default typescript;\n",
+        file: 'fixture.ts',
+        code: 'export const addOne = (value: number): number => value + 1;\n'
+    },
+    react: {
+        // with the automatic JSX runtime, as React projects use it, React needn't be in scope
+        config: [
+            "import react from '@playcanvas/eslint-config/react';",
+            "import typescript from '@playcanvas/eslint-config/typescript';",
+            '',
+            "export default [...typescript, ...react, { rules: { 'react/react-in-jsx-scope': 'off' } }];",
+            ''
+        ].join('\n'),
+        file: 'fixture.tsx',
+        code: 'export const Greeting = ({ name }: { name: string }) => <p>Hello, {name}</p>;\n'
+    }
+};
+for (const [name, { config, file, code }] of Object.entries(lintCases)) {
+    writeFileSync(join(dir, `${name}.config.mjs`), config);
+    writeFileSync(join(dir, file), code);
+}
 
-const entries = ['', '/typescript', '/javascript', '/react', '/prettier'];
-for (const entry of entries) {
-    const spec = `@playcanvas/eslint-config${entry}`;
-    run(`node --input-type=module -e "await import('${spec}'); console.log('  loaded ${spec}')"`, dir);
+for (const eslint of ['eslint@9', 'eslint@10']) {
+    console.log(`test: ${eslint}`);
+
+    // install ONLY the peers + the packed tarball — never the config's devDependencies
+    run(`npm install --no-audit --no-fund --no-save ${eslint} typescript@5 "${join(dir, tarball)}"`, dir);
+
+    const entries = ['', '/typescript', '/javascript', '/react', '/prettier'];
+    for (const entry of entries) {
+        const spec = `@playcanvas/eslint-config${entry}`;
+        run(`node --input-type=module -e "await import('${spec}'); console.log('  loaded ${spec}')"`, dir);
+    }
+
+    for (const [name, { file }] of Object.entries(lintCases)) {
+        run(`npx --no-install eslint --config ${name}.config.mjs ${file}`, dir);
+        console.log(`  linted ${file} with the ${name} config`);
+    }
 }
 
 rmSync(dir, { recursive: true, force: true });
-console.log('test: all entry points load with only declared dependencies');
+console.log('test: every entry point loads with only declared dependencies, and lints on ESLint 9 and 10');
