@@ -2,6 +2,9 @@ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescrip
 import importPlugin from 'eslint-plugin-import-x';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import regexpPlugin from 'eslint-plugin-regexp';
+import globals from 'globals';
+
+import { JS_TEST_FILES } from '../constants.js';
 
 // ESM Script supported JSDoc tags
 export const esmScriptTags = [
@@ -578,6 +581,18 @@ export default [
             'regexp/sort-flags': 'error',
             'regexp/strict': 'error',
             'regexp/use-ignore-case': 'error'
+        }
+    },
+    {
+        files: JS_TEST_FILES,
+        languageOptions: {
+            globals: globals.mocha
+        },
+        rules: {
+            // chai assertions such as `expect(x).to.be.true` are expression statements
+            'no-unused-expressions': 'off',
+            // mocha passes its context as `this` to function callbacks
+            'prefer-arrow-callback': 'off'
         }
     }
 ];

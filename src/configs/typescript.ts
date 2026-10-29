@@ -7,6 +7,8 @@ import globals from 'globals';
 import jsoncEslintParser from 'jsonc-eslint-parser';
 import tseslint from 'typescript-eslint';
 
+import { TS_TEST_FILES } from '../constants.js';
+
 const ignoreConfig = {
     ignores: ['**/node_modules', '**/dist']
 };
@@ -32,7 +34,8 @@ const baseConfig = {
         'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
         'import-x/no-duplicates': ['warn', { 'prefer-inline': false }],
         '@typescript-eslint/no-invalid-void-type': 'off',
-        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+        // interfaces are needed for declaration merging, global augmentation and `extends` overrides
+        '@typescript-eslint/consistent-type-definitions': 'off',
         '@typescript-eslint/no-unused-vars': [
             'error',
             {
@@ -69,6 +72,17 @@ const tsFilesConfig = {
     }
 };
 
+const testFilesConfig = {
+    files: TS_TEST_FILES,
+    languageOptions: {
+        globals: globals.mocha
+    },
+    rules: {
+        // chai assertions such as `expect(x).to.be.true` are expression statements
+        '@typescript-eslint/no-unused-expressions': 'off'
+    }
+};
+
 const packageJsonConfig = {
     files: ['**/package.json', '**/package-lock.json'],
     languageOptions: {
@@ -95,6 +109,7 @@ export default [
     ignoreConfig,
     baseConfig,
     tsFilesConfig,
+    testFilesConfig,
     packageJsonConfig,
 
     // turn off ESLint formatting rules that would conflict with Prettier

@@ -14,6 +14,11 @@ export default [
             react: {
                 version: 'detect'
             }
+        },
+        rules: {
+            // the automatic JSX runtime (React 17+) doesn't need React in scope
+            'react/jsx-uses-react': 'off',
+            'react/react-in-jsx-scope': 'off'
         }
     }
 ];
