@@ -78,10 +78,11 @@ Then run both, for example:
 }
 ```
 
-## Features
+Test files (`test/`, `tests/` and `__tests__/` folders, and `*.test.*` or `*.spec.*` files) get mocha globals and allow chai-style assertions such as `expect(x).to.be.true`.
 
-> [!WARNING]
-> The typescript and react rules are incomplete and are still being developed based on current practises and existing legacy rules
+If your config imports a package itself, such as `globals`, add it to your own `devDependencies`. ESLint 9 happens to install `globals`, but ESLint 10 does not.
+
+## Features
 
 - Full flat config format support for ESLint 9+
 - Comprehensive rule configuration
@@ -94,3 +95,5 @@ Then run both, for example:
 
 - ESLint 9 or 10
 - Node.js 20.19, 22.13, 24 or later
+
+On ESLint 10, npm warns `ERESOLVE overriding peer dependency` for `eslint-plugin-react` and `eslint-plugin-jsx-a11y`, whose peer ranges don't list ESLint 10 yet. The warnings are harmless: the `react` config patches eslint-plugin-react for ESLint 10, and eslint-plugin-jsx-a11y doesn't use the APIs ESLint 10 removed.

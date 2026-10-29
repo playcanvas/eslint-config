@@ -46,15 +46,50 @@ const lintCases = {
     typescript: {
         config: "import typescript from '@playcanvas/eslint-config/typescript';\n\nexport default typescript;\n",
         file: 'fixture.ts',
-        code: 'export const addOne = (value: number): number => value + 1;\n'
+        // interfaces are allowed alongside types
+        code: 'export const addOne = (value: number): number => value + 1;\n\nexport interface Point {\n    x: number;\n}\n'
+    },
+    'javascript-test': {
+        // mocha globals, function callbacks and chai-style expression statements
+        config: "import javascript from '@playcanvas/eslint-config/javascript';\n\nexport default javascript;\n",
+        file: 'javascript.test.mjs',
+        code: [
+            "describe('fixture', function () {",
+            "    it('passes', function () {",
+            '        const result = { ok: true };',
+            '        result.ok;',
+            '    });',
+            '});',
+            ''
+        ].join('\n')
+    },
+    'javascript-ts-test': {
+        // the javascript config must not select TypeScript tests: ESLint skips the file with a
+        // warning instead of failing to parse it with the JavaScript parser
+        config: "import javascript from '@playcanvas/eslint-config/javascript';\n\nexport default javascript;\n",
+        file: 'skipped.test.ts',
+        code: 'export const value: number = 1;\n'
+    },
+    'typescript-test': {
+        config: "import typescript from '@playcanvas/eslint-config/typescript';\n\nexport default typescript;\n",
+        file: 'typescript.test.mjs',
+        code: [
+            "describe('fixture', () => {",
+            "    it('passes', () => {",
+            '        const result = { ok: true };',
+            '        result.ok;',
+            '    });',
+            '});',
+            ''
+        ].join('\n')
     },
     react: {
-        // with the automatic JSX runtime, as React projects use it, React needn't be in scope
+        // automatic JSX runtime: no React import; prop-types reads the TypeScript prop types
         config: [
             "import react from '@playcanvas/eslint-config/react';",
             "import typescript from '@playcanvas/eslint-config/typescript';",
             '',
-            "export default [...typescript, ...react, { rules: { 'react/react-in-jsx-scope': 'off' } }];",
+            'export default [...typescript, ...react];',
             ''
         ].join('\n'),
         file: 'fixture.tsx',
